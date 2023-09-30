@@ -28,6 +28,13 @@ struct TrajOptExampleParams {
     a->Visit(DRAKE_NVP(q_nom_start));
     a->Visit(DRAKE_NVP(q_nom_end));
     a->Visit(DRAKE_NVP(q_guess));
+    a->Visit(DRAKE_NVP(diff_drive_horizon));
+    a->Visit(DRAKE_NVP(diff_drive_target));
+    a->Visit(DRAKE_NVP(diff_drive_P));
+    a->Visit(DRAKE_NVP(diff_drive_R));
+    a->Visit(DRAKE_NVP(diff_drive_Q));
+    a->Visit(DRAKE_NVP(diff_drive_velocity_saturation));
+    a->Visit(DRAKE_NVP(diff_drive_angular_saturation));
     a->Visit(DRAKE_NVP(Qq));
     a->Visit(DRAKE_NVP(Qv));
     a->Visit(DRAKE_NVP(R));
@@ -98,6 +105,15 @@ struct TrajOptExampleParams {
 
   // Initial guess is defined by linear interpolation between q_init and q_guess
   VectorXd q_guess;
+
+  // Diff drive information
+  int diff_drive_horizon;
+  VectorXd diff_drive_target;
+  VectorXd diff_drive_P;
+  VectorXd diff_drive_R;
+  VectorXd diff_drive_Q;
+  double diff_drive_velocity_saturation;
+  double diff_drive_angular_saturation;
 
   // Running cost weights (diagonal matrices)
   VectorXd Qq;

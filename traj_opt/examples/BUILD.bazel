@@ -77,6 +77,27 @@ drake_cc_binary(
 )
 
 drake_cc_binary(
+    name = "mini_cheetah_nom_traj",
+    srcs = ["mini_cheetah_nom_traj.cc"],
+    add_test_rule = 1,
+    data = [
+        ":mini_cheetah.yaml",
+        ":models",
+    ],
+    test_rule_args = [],
+    deps = [
+        ":example_base",
+        ":diff_drive",
+        "//common:find_resource",
+        "//multibody/parsing",
+        "//multibody/plant",
+        "//planning/trajectory_optimization",
+        "//multibody/meshcat",
+        "@gflags",
+    ],
+)
+
+drake_cc_binary(
     name = "pendulum",
     srcs = ["pendulum.cc"],
     add_test_rule = 1,
@@ -352,6 +373,15 @@ drake_cc_library(
         "//common:essential",
         "//common/yaml",
     ],
+)
+
+drake_cc_library(
+    name = "diff_drive",
+    srcs = [],
+    hdrs = ["diff_drive.h"],
+    deps = [
+        "//systems/framework"
+    ]
 )
 
 add_lint_tests()
